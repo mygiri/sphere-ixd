@@ -30,3 +30,8 @@ def getMeansCSV(df):
     return ls
 
 #Für jede Frage, den Durschnitt der Ergebnisse als Float. Wobei Antworten die älter als eine halbe Stunde sind ignoriert werden.
+
+def timestamp(csv):
+    pass
+def mean evalutaion(csv):
+    pass
