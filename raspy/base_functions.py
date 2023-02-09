@@ -30,3 +30,21 @@ def getMeansCSV(df):
     return ls
 
 #Für jede Frage, den Durschnitt der Ergebnisse als Float. Wobei Antworten die älter als eine halbe Stunde sind ignoriert werden.
+
+def selectTime(df_resp):
+    # for exhibition purposes only display the last 30min of responses
+    timediff = timedelta(minutes=30)
+    
+    #drop responses without submitdate
+    df_resp= df_resp.dropna(subset=['submitdate'])
+    df_resp = df_resp.reset_index(drop=True)
+
+    for i in range(0,len(df_resp['submitdate'])):
+
+        datetimestr = str(df_resp['submitdate'][i])
+        datetime_object = datetime.strptime(datetimestr, '%Y-%m-%d %H:%M:%S')
+
+        if datetime.now()-datetime_object >= timediff:
+            df_resp.drop(i)
+        
+    return df_resp
